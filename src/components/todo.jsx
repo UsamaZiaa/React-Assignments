@@ -19,6 +19,14 @@ class TodoApp extends Component {
         })
       }
     
+	   onKeyDown = (event) => {
+      //  console.log('onKeyDown',event)
+       if (event.key === 'Enter') {
+           this.add_todo()
+          // console.log("True")
+       }
+      }
+	
       delete_todo = (index) =>{
         this.state.todos.splice(index,1)
         this.setState({
@@ -52,7 +60,7 @@ class TodoApp extends Component {
         return (
             <div>
                 <h1>Todo App</h1>
-              <input value={value} onChange={(e)=>this.setState({value: e.target.value})} type="text" placeholder="Enter Todo"/>
+              <input value={value} onChange={(e)=>this.setState({value: e.target.value})} onKeyDown={this.onKeyDown} type="text" placeholder="Enter Todo"/>
               {/* <p>{this.state.value}My Para</p> */}
               <button onClick={this.add_todo}>Add Item</button>
               <ul>
